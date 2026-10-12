@@ -1,0 +1,25 @@
+# Compiled files and release output
+*.exe
+*.dll
+*.pdb
+*.zip
+.artifacts/
+.test-bin/
+bin/
+obj/
+
+# Local runtime state must never be published
+data/
+rules.json*
+session.json
+*.log
+*.tmp
+*.bak
+.env
+.env.*
+
+# Editor and OS state
+.vs/
+.vscode/
+Thumbs.db
+.DS_Store

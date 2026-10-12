@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8fb">
+  <title>MousePilot — Your mouse, your shortcuts</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23795be8'/%3E%3Cpath d='M23 14h18v26a9 9 0 0 1-18 0z' fill='none' stroke='white' stroke-width='4'/%3E%3Cpath d='M32 14v15m-9 0h18' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="MousePilot home"><span class="brand-mark" data-icon="mouse"></span><span>MousePilot<span class="brand-dot">.</span></span></a>
+      <div class="workspace-label">YOUR WORKSPACE</div>
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="shortcuts"><span data-icon="grid"></span> Shortcuts <span class="nav-count" id="nav-count">0</span></button>
+        <button class="nav-item" data-view="activity"><span data-icon="activity"></span> Activity</button>
+        <button class="nav-item" data-view="settings"><span data-icon="settings"></span> Settings</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="little-note"><span class="note-spark" data-icon="sparkles"></span><strong>Small gestures.<br>Big possibilities.</strong><p>Your everyday mouse,<br>with a few new tricks.</p></div>
+        <div class="local-profile"><span class="profile-icon" data-icon="monitor"></span><div><strong>This computer</strong><small>Private & local</small></div><span class="local-dot" title="Runs on this computer"></span></div>
+      </div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumb-current">Shortcuts</strong></div><div class="connection-pill" id="connection-pill"><span class="status-dot"></span><span id="connection-label">Connecting…</span></div></header>
+      <main id="main" tabindex="-1">
+        <div class="page-heading"><div><div class="eyebrow">A LITTLE GESTURE GOES A LONG WAY</div><h1 id="page-title">Your mouse. Your shortcuts.</h1><p id="page-description">Turn a few clicks into your favorite next move.</p></div><button class="button primary new-rule-button" data-action="new"><span data-icon="plus"></span> New shortcut</button></div>
+        <div class="error-banner" id="error-banner" role="alert" hidden></div>
+
+        <section id="view-shortcuts" class="view-section" aria-label="Your shortcuts">
+          <div class="overview-row">
+            <div class="stat-card"><span class="stat-icon violet" data-icon="bolt"></span><div><span class="stat-label">Active shortcuts</span><strong id="stat-active">0</strong></div></div>
+            <div class="stat-card"><span class="stat-icon blue" data-icon="grid"></span><div><span class="stat-label">Saved shortcuts</span><strong id="stat-saved">0</strong></div></div>
+            <div class="stat-card"><span class="stat-icon green" data-icon="arrowUpRight"></span><div><span class="stat-label">Times used</span><strong id="stat-runs">0</strong></div></div>
+          </div>
+          <div class="section-toolbar"><div class="section-title"><h2>My shortcuts</h2><span id="rule-count" class="count-badge">0</span></div><div class="engine-control"><span id="engine-caption">Shortcuts enabled</span><button id="global-toggle" class="toggle" role="switch" aria-label="Enable all shortcuts" aria-checked="true" data-action="global-toggle"><span></span></button></div></div>
+          <div id="rules-container" class="rules-container"><div class="loading-state"><span class="spinner"></span> Connecting to your mouse…</div></div>
+          <div class="workspace-hint"><span data-icon="shield"></span><p id="focus-note">Shortcuts pause while this dashboard is focused, so you can edit freely. Click into another app to use them.</p><button class="text-button" data-action="try">Try a gesture <span data-icon="arrowRight"></span></button></div>
+          <section class="activity-preview"><div class="section-toolbar"><div class="section-title"><h2>Recent activity</h2></div><button class="text-button subtle" data-view="activity">View all <span data-icon="arrowRight"></span></button></div><div id="recent-activity"></div></section>
+        </section>
+
+        <section id="view-activity" class="view-section" aria-label="Activity log" hidden><div class="surface activity-surface"><div class="panel-heading"><h2>A little history of your shortcuts</h2><span class="muted">Stored on this computer</span></div><div id="all-activity"></div></div></section>
+
+        <section id="view-settings" class="view-section" aria-label="Settings" hidden>
+          <div class="surface settings-surface"><div class="panel-heading"><div><h2>Make yourself at home</h2><p>A few simple settings for your everyday workflow.</p></div><span data-icon="settings"></span></div><div class="setting-row"><div><h3>Start with Windows</h3><p>Keep your shortcuts ready when you sign in.</p></div><button id="startup-toggle" class="toggle" role="switch" aria-label="Start with Windows" aria-checked="false" data-action="startup-toggle"><span></span></button></div><div class="setting-row"><div><h3>Keep your normal clicks</h3><p>MousePilot listens for gestures. Your clicks and scrolling still reach the app you’re using.</p></div><span class="setting-badge">Always on</span></div><div class="setting-row"><div><h3>Safe editing</h3><p>Gesture detection pauses while this dashboard is focused. The practice area never opens an app.</p></div><span class="setting-badge">Always on</span></div><div class="setting-row"><div><h3>Runs locally</h3><p>Your rules stay on this computer. No account or subscription needed.</p></div><span data-icon="shield"></span></div><div class="setting-row quit-row"><div><h3>Quit MousePilot</h3><p>Stop the background listener and all shortcuts until you open MousePilot again.</p></div><button class="button secondary danger-text" data-action="quit">Quit app</button></div></div>
+          <p class="version-note">MousePilot <span id="version">1.0</span> <span>·</span> Made for your everyday mouse.</p>
+        </section>
+      </main>
+      <footer><span>Less clicking around. More getting there.</span><span><span class="tiny-dot"></span> On your computer, for your computer.</span></footer>
+    </div>
+  </div>
+
+  <dialog id="rule-dialog" class="modal rule-modal">
+    <form id="rule-form" novalidate>
+      <div class="modal-heading"><div><div class="eyebrow">MAKE IT YOURS</div><h2 id="rule-dialog-title">Create a shortcut</h2><p>A simple gesture. Something useful happens.</p></div><button type="button" class="icon-button" data-action="close-rule" aria-label="Close shortcut editor"><span data-icon="close"></span></button></div>
+      <div class="modal-body">
+        <div class="field-block"><div class="field-heading"><label for="rule-name"><span class="step-number">1</span> Give it a name</label><span class="optional-label">Something you’ll recognize</span></div><input id="rule-name" maxlength="60" placeholder="e.g. Open Claude" autocomplete="off" required></div>
+        <div class="field-block"><div class="field-heading"><label><span class="step-number">2</span> Build your gesture</label><button type="button" class="text-button small" data-action="clear-sequence">Clear</button></div><p class="field-help">Click the buttons in the order you want to use them.</p><div id="sequence-builder" class="sequence-builder" aria-live="polite"></div><div class="gesture-buttons" id="gesture-buttons"></div><div class="timing-row"><label for="rule-gap">Time between gestures</label><select id="rule-gap"><option value="400">Quick · 0.4 seconds</option><option value="700" selected>Natural · 0.7 seconds</option><option value="1000">Relaxed · 1 second</option><option value="1500">Slow · 1.5 seconds</option><option value="2500">Extra time · 2.5 seconds</option></select></div></div>
+        <div class="field-block"><div class="field-heading"><label for="rule-app"><span class="step-number">3</span> Choose what happens</label></div><div class="action-type-tabs" role="group" aria-label="Action type"><button type="button" class="action-type active" data-kind="app"><span data-icon="app"></span> Open an app</button><button type="button" class="action-type" data-kind="url"><span data-icon="globe"></span> Open a website</button></div><div id="app-action"><div class="app-select-row"><select id="rule-app" aria-label="Application"><option value="">Choose an application…</option></select><button type="button" class="button secondary browse-button" data-action="browse"><span data-icon="folder"></span> Browse</button></div><p class="field-help">Installed apps on this computer, or choose an application file.</p></div><div id="url-action" hidden><input id="rule-url" type="url" placeholder="https://your-favorite-site.com" aria-label="Website address" autocomplete="url"><p class="field-help">Opens in your default browser.</p></div></div>
+        <div id="form-error" class="form-error" role="alert" hidden></div>
+      </div>
+      <div class="modal-footer"><span class="save-note"><span data-icon="bolt"></span> Applies immediately when saved</span><div><button type="button" class="button secondary" data-action="close-rule">Cancel</button><button type="submit" class="button primary" id="save-rule">Create shortcut <span data-icon="arrowRight"></span></button></div></div>
+    </form>
+  </dialog>
+
+  <dialog id="practice-dialog" class="modal practice-modal"><div class="modal-heading"><div><div class="eyebrow">A LITTLE PRACTICE</div><h2>Try your gesture</h2><p>No apps will open here. Just get a feel for it.</p></div><button class="icon-button" data-action="close-practice" aria-label="Close practice area"><span data-icon="close"></span></button></div><div class="modal-body"><label class="standalone-label" for="practice-rule">Shortcut to practice</label><select id="practice-rule"></select><div id="practice-target" class="practice-target"></div><div id="practice-pad" class="practice-pad" tabindex="0" aria-label="Mouse gesture practice area"><span class="practice-mouse" data-icon="mouse"></span><strong id="practice-message">Make your gesture inside this area</strong><span id="practice-subtitle">Left, right, middle, wheel, or side buttons.</span><div id="practice-progress" class="practice-progress"></div></div><p class="practice-footnote">Use your actual mouse buttons here. All clicks remain inside the practice area.</p></div><div class="modal-footer"><span class="save-note"><span data-icon="shield"></span> Practice mode · no actions run</span><button class="button secondary" data-action="reset-practice">Try again</button></div></dialog>
+
+  <dialog id="confirm-dialog" class="modal confirm-modal"><div class="modal-heading"><div><h2 id="confirm-title">Delete this shortcut?</h2><p id="confirm-description">You can create it again anytime.</p></div></div><div class="modal-footer"><button class="button secondary" data-action="cancel-confirm">Cancel</button><button class="button danger" id="confirm-button">Delete shortcut</button></div></dialog>
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
